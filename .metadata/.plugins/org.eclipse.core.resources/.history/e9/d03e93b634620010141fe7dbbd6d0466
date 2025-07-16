@@ -1,0 +1,6 @@
+package com.example.Repository;
+
+import com.example.School.*;
+public interface StudentRepository extends JpaRepository<Student, Long> {
+	
+}
