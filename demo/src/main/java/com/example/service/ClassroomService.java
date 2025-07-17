@@ -1,0 +1,38 @@
+package com.example.service;
+
+import com.example.School.Classroom;
+import com.example.Repository.ClassroomRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ClassroomService {
+    @Autowired
+    private ClassroomRepository classroomRepository;
+
+    public List<Classroom> getAllClassrooms() {
+        return classroomRepository.findAll();
+    }
+
+    public Classroom getClassroomById(Long id) {
+        return classroomRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Classroom not found"));
+    }
+
+    public Classroom createClassroom(Classroom classroom) {
+        return classroomRepository.save(classroom);
+    }
+
+    public Classroom updateClassroom(Long id, Classroom classroomDetails) {
+        Classroom classroom = getClassroomById(id);
+        classroom.setClassName(classroomDetails.getClassName());
+        return classroomRepository.save(classroom);
+    }
+
+    public void deleteClassroom(Long id) {
+        classroomRepository.deleteById(id);
+    }
+}
+

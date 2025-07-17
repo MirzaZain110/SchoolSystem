@@ -13,7 +13,31 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CourseID;
 
-    private String CourseName;
+    public Long getCourseID() {
+		return CourseID;
+	}
+
+	public void setCourseID(Long courseID) {
+		CourseID = courseID;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
+	private String CourseName;
 
     @ManyToOne
     private Teacher teacher;

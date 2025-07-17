@@ -1,0 +1,41 @@
+package com.example.Controller;
+
+import com.example.School.Classroom;
+import com.example.service.ClassroomService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/classrooms")
+public class ClassroomController {
+    @Autowired
+    private ClassroomService classroomService;
+
+    @GetMapping
+    public List<Classroom> getAllClassrooms() {
+        return classroomService.getAllClassrooms();
+    }
+
+    @GetMapping("/{id}")
+    public Classroom getClassroom(@PathVariable Long id) {
+        return classroomService.getClassroomById(id);
+    }
+
+    @PostMapping
+    public Classroom createClassroom(@RequestBody Classroom classroom) {
+        return classroomService.createClassroom(classroom);
+    }
+
+    @PutMapping("/{id}")
+    public Classroom updateClassroom(@PathVariable Long id, @RequestBody Classroom classroom) {
+        return classroomService.updateClassroom(id, classroom);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteClassroom(@PathVariable Long id) {
+        classroomService.deleteClassroom(id);
+    }
+}
+
